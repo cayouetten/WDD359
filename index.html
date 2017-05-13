@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+			
+		<title>Marvel API</title>
+
+		<link rel="stylesheet" type="text/css" href="styles.css">
+	</head>
+	<body>
+		<!-- Search -->
+		<section id="searchSection">
+			Search By:
+			<form id="userSearchForm">
+				<select id="userSearchType">
+					<option value="character">Character</option>
+					<option value="comicT">Comic: Title</option>
+					YYYY-MM-DD<option value="comicD">Comic: Date</option>
+				</select>
+
+				<input type="text" id="searchField" placeholder="Search Comics or Characters" value="">
+				<button type="button" id="searchButton">Search</button>
+			</form>
+		</section>
+
+		<!-- Browse -->
+<!-- 		<section id="browseSection">
+			Browse
+			<ul id="userBrowseList">
+				<li>
+					Comics
+					<ul>
+						<li>Creator</li>
+						<li>Title</li>
+						<li>Year</li>
+						<li>All Issues</li>
+					</ul>
+				</li>
+				<li>Characters</li>
+				<li>Creators</li>
+				<li>All</li>
+			</ul>
+		</section> -->
+
+		<!-- Collections -->
+<!-- 		<section id="collectionSection">
+			Collections
+			<ul id="userCollectionList"
+			</ul>
+		</section> -->
+		
+		<!-- RESULTS -->
+		<section id="uesrResultsSection">
+			Results
+			<div class="resultDiv"></div>
+		</section>
+		
+<!-- 		<footer>
+			<h2>Built by Nicole Cayouette for WDD</h2>
+			<p>Data provided by <a href="https://marvel.com" target="_blank">Marvel</a>. &copy; 2014 Marvel</p>
+		</footer> -->
+		
+
+		<script src="main.js"></script>
+		<script src="hashGeneration.js"></script>
+	</body>
+</html>
