@@ -9,46 +9,45 @@
 		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
 	<body>
-		<!-- Search -->
-		<section id="searchSection">
-			Search By:
-			<form id="userSearchForm">
-				<select id="userSearchType">
-					<option value="character">Character</option>
-					<option value="comicT">Comic: Title</option>
-					YYYY-MM-DD<option value="comicD">Comic: Date</option>
-				</select>
+        <nav>
+            <button type="button" id="navSearch"><h1>SEARCH</h1></button>
+            <button type="button" id="navBrowse"><h1>BROWSE</h1></button>
+            <button type="button" id="navCollections"><h1>COLLECTIONS</h1></button>
+        </nav>
+        
+        <div id="content">
+            <!-- Search -->
+            <section id="searchSection" class="toggleHide">
+                <form id="userSearchForm">
+                    <select id="userSearchType">
+                        <option value="character">Character</option>
+                        <option value="comicT">Comic: Title</option>
+                        YYYY-MM-DD<option value="comicD">Comic: Date</option>
+                    </select>
 
-				<input type="text" id="searchField" placeholder="Search Comics or Characters" value="">
-				<button type="button" id="searchButton">Search</button>
-			</form>
-		</section>
+                    <input type="text" id="searchField" placeholder="Search Comics or Characters" value="">
+                    <button type="button" id="searchButton">Search</button>
+                </form>
+            </section>
 
-		<!-- Browse -->
-<!-- 		<section id="browseSection">
-			Browse
-			<ul id="userBrowseList">
-				<li>
-					Comics
-					<ul>
-						<li>Creator</li>
-						<li>Title</li>
-						<li>Year</li>
-						<li>All Issues</li>
-					</ul>
-				</li>
-				<li>Characters</li>
-				<li>Creators</li>
-				<li>All</li>
-			</ul>
-		</section> -->
+            <!-- Browse -->
+            <section id="browseSection" class="toggleHide">
+                <ul id="userBrowseList"> 
+                    <li><button type="button" id="browseComics">Comics</button></li>
+                    <li><button type="button" id="browseCharacters">Characters</button></li>
+                    <li><button type="button" id="browseCreators">Creators</button></li>
+                </ul>
 
-		<!-- Collections -->
-<!-- 		<section id="collectionSection">
-			Collections
-			<ul id="userCollectionList"
-			</ul>
-		</section> -->
+                <section id="browseComicsRender"></section>
+                <section id="browseCharactersRender"></section>
+                <section id="browseCreatorsRender"></section>
+            </section> 
+
+            <!-- Collections -->
+            <section id="collectionsSection" class="toggleHide">
+                <ul id="userCollectionList"></ul>
+            </section>
+        </div>
 		
 		<!-- RESULTS -->
 		<section id="uesrResultsSection">
@@ -56,13 +55,16 @@
 			<div class="resultDiv"></div>
 		</section>
 		
-<!-- 		<footer>
-			<h2>Built by Nicole Cayouette for WDD</h2>
-			<p>Data provided by <a href="https://marvel.com" target="_blank">Marvel</a>. &copy; 2014 Marvel</p>
-		</footer> -->
+ 		<footer>
+			<h1>Built by Nicole Cayouette for WDD</h1>
+			Data provided by <a href="https://marvel.com" target="_blank">Marvel</a>. &copy; 2014
+		</footer> 
 		
 
-		<script src="main.js"></script>
-		<script src="hashGeneration.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/hashGeneration.js"></script>
+        <script src="js/navigation.js"></script>
+        <script src="js/search.js"></script>
+        <script src="js/browse.js"></script>
 	</body>
 </html>
