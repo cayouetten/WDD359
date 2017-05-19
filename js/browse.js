@@ -1,24 +1,24 @@
 //BROWSE
-var browseComics = document.querySelector('#browseComics');
+var browseComics = document.querySelector("#browseComics");
 var bcoRender = document.querySelector("#browseComicsRender");
 
-var browseCharacters = document.querySelector('#browseCharacters');
+var browseCharacters = document.querySelector("#browseCharacters");
 var bchRender = document.querySelector("#browseCharactersRender");
 
-var browseCreators = document.querySelector('#browseCreators');
+var browseCreators = document.querySelector("#browseCreators");
 var bcrRender = document.querySelector("#browseCreatorsRender");
 
 browseComics.addEventListener("click", function(e) {
     var category = "comics";
     
-    bcoRender.innerHTML = "Title begins with " + showAZ() + "<button type='button' id='" + category + "GoButton'>GO</button>";
+    bcoRender.innerHTML = "<span>Title begins with </span>" + showAZ() + "<button type='button' id='" + category + "GoButton'><img src='images/search.svg'></button>";
     bchRender.innerHTML = "";
     bcrRender.innerHTML = "";
     
     var comicsGoButton = document.querySelector('#comicsGoButton');
     
-    if(comicsGoButton != null) {    
-        comicsGoButton.addEventListener("click", function(){          
+    if(comicsGoButton != null) {
+        comicsGoButton.addEventListener("click", function(){
             var querySelect = document.querySelector(".azSelect").value;
 
             browseQuery(category, querySelect);
@@ -30,7 +30,7 @@ browseCharacters.addEventListener("click", function(e) {
     var category = "characters";
     
     bcoRender.innerHTML = "";
-    bchRender.innerHTML = "Name begins with " + showAZ() + "<button type='button' id='" + category + "GoButton'>GO</button>";
+    bchRender.innerHTML = "<span>Name begins with </span>" + showAZ() + "<button type='button' id='" + category + "GoButton'><img src='images/search.svg'></button>";
     bcrRender.innerHTML = "";
     
     var charactersGoButton = document.querySelector('#charactersGoButton');
@@ -49,7 +49,7 @@ browseCreators.addEventListener("click", function(e) {
     
     bcoRender.innerHTML = "";
     bchRender.innerHTML = "";
-    bcrRender.innerHTML = "Last name begins with " + showAZ() + "<button type='button' id='" + category + "GoButton'>GO</button>";
+    bcrRender.innerHTML = "<span>Last name begins with </span>" + showAZ() + "<button type='button' id='" + category + "GoButton'><img src='images/search.svg'></button>";
     
     var creatorsGoButton = document.querySelector('#creatorsGoButton');
     
@@ -94,12 +94,13 @@ function browseQuery(category, querySelect) {
 		console.log("Empty Entry");
 		e.preventDefault();
 	} else {
-		createBrowseRequest(apiRequest, category);
+console.log("browseQuery", category, apiRequest);
+		createBrowseRequest(apiRequest, category, querySelect);
 	}
 }
 
 //REQUEST & RESULTS
-function createBrowseRequest(url, category) {
+function createBrowseRequest(url, category, querySelect) {
 	var request = new XMLHttpRequest();
 	request.open("GET", url, true);
 	
@@ -113,9 +114,9 @@ function createBrowseRequest(url, category) {
             var resultsFound = resultData.data.total;
             
             //COMPILE
-            if(resultsFound == 0) {             
-                resultContent += "No results. Please try again.";
-            } else if(category == "comics") {                
+            if(resultsFound == 0) {
+                resultContent += "<span class='noResults'>No results found, please try again.</span>";
+            } else if(category == "comics") {
             	for(var i=0; i<resultsFound; i++) {
 		            var resPath = resultData.data.results[i];
 
@@ -123,14 +124,18 @@ function createBrowseRequest(url, category) {
                         var name = resPath.title;
                         var issue = resPath.issueNumber;
                         var description = resPath.description;
+                        if(description == "" || description == null) {
+                            description = "No description available.";
+                        }
                         var pages = resPath.pageCount;
-                        var image = "<img src='" + resPath.thumbnail.path + "/portrait_medium." + resPath.thumbnail.extension + "'/>";
+                        var image = "<img src='" + resPath.thumbnail.path + "/portrait_incredible." + resPath.thumbnail.extension + "'/>";
 
-                        resultContent += "<br><br><br>Name: " + name;
-                        resultContent += "<br>Issue: " + issue;
-                        resultContent += "<br>Description: " + description;
-                        resultContent += "<br>Page Count: " + pages;
-                        resultContent += "<br>Image: " + image;
+                        resultContent += "<div class='resultSingleItem'><span class='searchImage'>" + image + "</span>";
+                        
+                        resultContent += "<div class='searchDetails'><span class='searchName'>" + name + "</span>";
+                        resultContent += "<span class='searchIssue'>Issue #" + issue + "</span>";
+                        resultContent += "<span class='searchDescription'>" + description + "</span>";
+                        resultContent += "<span class='searchPageCount'>" + pages + " pages</span></div></div>";
                     }
 	            }
             } else if(category == "characters") {
@@ -140,15 +145,18 @@ function createBrowseRequest(url, category) {
                     if(resPath != null) {
                         var name = resPath.name;
                         var description = resPath.description;
+                        if(description == "" || description == null) {
+                            description = "No description available.";
+                        }
                         var comicsTotal = resPath.comics.available;
                         var comicsCollection = resPath.comics.comicsCollection;
-                        var image = "<img src='" + resPath.thumbnail.path + "/portrait_medium." + resPath.thumbnail.extension + "'/>";
+                        var image = "<img src='" + resPath.thumbnail.path + "/portrait_incredible." + resPath.thumbnail.extension + "'/>";
 
-                        resultContent += "<br><br><br>Name: " + name;
-                        resultContent += "<br>Description: " + description;
-                        resultContent += "<br>Total: " + comicsTotal;
-                        resultContent += "<br>Collection: " + comicsCollection;
-                        resultContent += "<br>Image: " + image;
+                        resultContent += "<div class='resultSingleItem'><span class='searchImage'>" + image + "</span>";
+                        
+                        resultContent += "<div class='searchDetails'><span class='searchName'>" + name + "</span>";
+                        resultContent += "<span class='searchDescription'>" + description + "</span>";
+                        resultContent += "<span class='searchTotal'>" + comicsTotal + " Comic Appearances</span></div></div>";
                     }
 	            }
             } else {
@@ -157,34 +165,35 @@ function createBrowseRequest(url, category) {
 
                     if(resPath != null) {
                         var name = resPath.fullName;
-                        
                         var attributedComics = "";
                         for(var j=0; j<resPath.comics.returned; j++) {
                             if(resPath.comics.items[j].name != undefined) {
                                 attributedComics += "<br>" + resPath.comics.items[j].name;
                             }
                         }
-                        
                         var attributedStories = "";
                         for(var k=0; k<resPath.stories.returned; k++) {
                             if(resPath.stories.items[k].name != undefined && resPath.stories.items[k].type != undefined)
                             attributedStories += "<br>" + resPath.stories.items[k].name + ": " + resPath.stories.items[k].type;
                         }
+                        var image = "<img src='" + resPath.thumbnail.path + "/portrait_incredible." + resPath.thumbnail.extension + "'/>";
                         
-                        var image = "<img src='" + resPath.thumbnail.path + "/portrait_medium." + resPath.thumbnail.extension + "'/>";
-
-                        resultContent += "<br><br><br>Name: " + name;
-                        resultContent += "<br><br>Attributed with comics: " + attributedComics;
-                        resultContent += "<br><br>Attributed with stories: " + attributedStories;
-                        resultContent += "<br>Image: " + image;
+                        resultContent += "<div class='resultSingleItem'><span class='searchImage'>" + image + "</span>";
+                        
+                        resultContent += "<div class='creatorsSearchDetails'><span class='searchName'>" + name + "</span>";
+                        resultContent += "<span class='searchAttrComics'>Attributed Comics: " + attributedComics + "</span>";
+                        resultContent += "<span class='searchAttrtories'>Attributed Stories" + attributedStories + "</span></div></div>";
                     }
 	            }
             }
 			
 			//RENDER
-			var res = document.querySelector(".resultDiv");
+            var resHead = document.querySelector("#resultHeading");
+			var res = document.querySelector("#resultDiv");
 			if(res != null) {
-				res.innerHTML = "<h1>Results for <em>" + searchField.value + "</em></h1>" + resultContent;
+                resHead.className = "";
+				resHead.innerHTML = "<img src='images/explosion2.svg'><h1>" + category.toUpperCase() + " results beginning with <em>" + querySelect + "</em></h1>";
+                res.innerHTML = resultContent;
 			}
 		}
 		else {

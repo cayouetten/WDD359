@@ -23,13 +23,14 @@ search.addEventListener("click", function(e) {
 		apiRequest = "https://gateway.marvel.com/v1/public/comics?titleStartsWith=" + query + "&ts=" + ts + "&apikey=" + puk + "&hash=" + hash;
 	} else {
 		//comic by date
-		apiRequest = "https://gateway.marvel.com/v1/public/comics?dateRange=" + query + "%2C%202017-04-04&ts=" + ts + "&apikey=" + puk + "&hash=" + hash;
+		apiRequest = "https://gateway.marvel.com/v1/public/comics?dateRange=" + query + "-01-01%2C" + query + "-12-31&ts=" + ts + "&apikey=" + puk + "&hash=" + hash;
 	}
 
 	if(query == "") {
 		console.log("Empty Entry");
 		e.preventDefault();
 	} else {
+        console.log(apiRequest);
 		createSearchRequest(apiRequest, option);
 	}
 });
@@ -49,7 +50,7 @@ function createSearchRequest(url, option) {
             var resultsFound = resultData.data.total;
             //COMPILE
             if(resultsFound == 0) {              
-                resultContent += "No results. Please try again.";
+                resultContent += "<span class='noResults'>No results found, please try again.</span>";
             } else if(option == "character") {
             	for(var i=0; i<resultsFound; i++) {
 		            var resPath = resultData.data.results[i];
@@ -57,15 +58,17 @@ function createSearchRequest(url, option) {
                     if(resPath != null) {
                         var name = resPath.name;
                         var description = resPath.description;
+                        if(description == "" || description == null) {
+                            description = "No description available.";
+                        }
                         var comicsTotal = resPath.comics.available;
-                        var comicsCollection = resPath.comics.comicsCollection;
-                        var image = "<img src='" + resPath.thumbnail.path + "/portrait_medium." + resPath.thumbnail.extension + "'/>";
+                        var image = "<img src='" + resPath.thumbnail.path + "/portrait_incredible." + resPath.thumbnail.extension + "'/>";
 
-                        resultContent += "<br><br><br>Name: " + name;
-                        resultContent += "<br>Description: " + description;
-                        resultContent += "<br>Total: " + comicsTotal;
-                        resultContent += "<br>Collection: " + comicsCollection;
-                        resultContent += "<br>Image: " + image;
+                        resultContent += "<div class='resultSingleItem'><span class='searchImage'>" + image + "</span>";
+                        
+                        resultContent += "<div class='searchDetails'><span class='searchName'>" + name + "</span>";
+                        resultContent += "<span class='searchDescription'>" + description + "</span>";
+                        resultContent += "<span class='searchTotal'>" + comicsTotal + " Comic Appearances</span></div></div>";
                     }
 	            }
             } else {
@@ -73,29 +76,36 @@ function createSearchRequest(url, option) {
 		            var resPath = resultData.data.results[i];
                     
                     if(resPath != null) {
+                        
+                        var id = resPath.id;
+                console.log(id);
+                        
                         var name = resPath.title;
                         var issue = resPath.issueNumber;
                         var description = resPath.description;
-                        var pages = resPath.pageCount;
-                        var image = "<img src='" + resPath.thumbnail.path + "/portrait_medium." + resPath.thumbnail.extension + "'/>";
-
-                        resultContent += "<br><br><br>Name: " + name;
-                        resultContent += "<br>Issue: " + issue;
-                        resultContent += "<br>Description: " + description;
-                        resultContent += "<br>Page Count: " + pages;
-                        resultContent += "<br>Image: " + image;
-                    } else {
-                        if(option == "comicD"){
-                            resultContent += "No results, please try again.<br>Use format MM-DD-YYY.";
+                        if(description == "" || description == null) {
+                            description = "No description available.";
                         }
+                        var pages = resPath.pageCount;
+                        var image = "<img src='" + resPath.thumbnail.path + "/portrait_incredible." + resPath.thumbnail.extension + "'/>";
+
+                        resultContent += "<div class='resultSingleItem'><span class='searchImage'>" + image + "</span>";
+                        
+                        resultContent += "<div class='searchDetails'><span class='searchName'>" + name + "</span>";
+                        resultContent += "<span class='searchIssue'>Issue #" + issue + "</span>";
+                        resultContent += "<span class='searchDescription'>" + description + "</span>";
+                        resultContent += "<span class='searchPageCount'>" + pages + " pages</span></div></div>";
                     }
 	            }
             }
 			
 			//RENDER
-			var res = document.querySelector(".resultDiv");
+			var resHead = document.querySelector("#resultHeading");
+            var res = document.querySelector("#resultDiv");
 			if(res != null) {
-				res.innerHTML = "<h1>Results for <em>" + searchField.value + "</em></h1>" + resultContent;
+                resHead.className = "";
+				resHead.innerHTML = "<img src='images/explosion2.svg'><h1>Results for <em  id='resH1'>" + searchField.value + "</em></h1>";
+                res.innerHTML = resultContent;
 			}
 		}
 		else {

@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+    width: 98%;
+    min-height: 98vh;
+    
+    padding: 0;
+    margin: .5%;
+    
+    font-family: "Tahoma", sans-serif;
+}
+
+h1 {
+    font-family: "Impact", monospace;
+}
+
+/*TOGGLE DISPLAY*/
+.toggleHide {
+    display: none;
+}
+
+.toggleShow {
+    display: flex !important;
+}
+
+/*NO RESULTS*/
+.noResults{
+    width: 100%;
+    
+    margin-top: 15%;
+    margin-left: 15%;
+    
+    font-style: italic;
+}
+
+/*GENERAL ATTRIBUTION*/
+.genAttribution {
+    margin-top: 10%;
+}

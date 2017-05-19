@@ -6,13 +6,22 @@
 			
 		<title>Marvel API</title>
 
-		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+		<link rel="stylesheet" type="text/css" href="styles/browse.css">
+		<link rel="stylesheet" type="text/css" href="styles/collections.css">
+		<link rel="stylesheet" type="text/css" href="styles/navigation.css">
+		<link rel="stylesheet" type="text/css" href="styles/results.css">
+		<link rel="stylesheet" type="text/css" href="styles/search.css">
 	</head>
 	<body>
         <nav>
-            <button type="button" id="navSearch"><h1>SEARCH</h1></button>
-            <button type="button" id="navBrowse"><h1>BROWSE</h1></button>
-            <button type="button" id="navCollections"><h1>COLLECTIONS</h1></button>
+            <span class="smallNav"><button type="button" id="navHome"><img id="homeImg" src="images/home.svg"></button></span>
+            
+            <span class="largeNav"><button type="button" id="navSearch"><h1>SEARCH</h1></button></span>
+            <span class="largeNav"><button type="button" id="navBrowse"><h1>BROWSE</h1></button></span>
+            <span class="largeNav"><button type="button" id="navCollections"><h1>COLLECTIONS</h1></button></span>
+            
+            <span class="smallNav"><button type="button" id="navInfo"><img id="infoImg" src="images/info.svg"></button></span>
         </nav>
         
         <div id="content">
@@ -20,49 +29,46 @@
             <section id="searchSection" class="toggleHide">
                 <form id="userSearchForm">
                     <select id="userSearchType">
-                        <option value="character">Character</option>
-                        <option value="comicT">Comic: Title</option>
-                        YYYY-MM-DD<option value="comicD">Comic: Date</option>
+                        <option value="character">CHARACTER by Name</option>
+                        <option value="comicT">COMIC by Title</option>
+                        <option value="comicD">COMIC by Year</option>
                     </select>
 
-                    <input type="text" id="searchField" placeholder="Search Comics or Characters" value="">
-                    <button type="button" id="searchButton">Search</button>
+                    <input type="text" id="searchField" placeholder="Search">
+                    
+                    <button type="button" id="searchButton"><img src="images/search.svg"></button>
                 </form>
             </section>
 
             <!-- Browse -->
             <section id="browseSection" class="toggleHide">
                 <ul id="userBrowseList"> 
-                    <li><button type="button" id="browseComics">Comics</button></li>
-                    <li><button type="button" id="browseCharacters">Characters</button></li>
-                    <li><button type="button" id="browseCreators">Creators</button></li>
+                    <li><button type="button" class="browseNav" id="browseComics">COMICS</button></li>
+                    <li><button type="button" class="browseNav" id="browseCharacters">CHARACTERS</button></li>
+                    <li><button type="button" class="browseNav" id="browseCreators">CREATORS</button></li>
                 </ul>
 
-                <section id="browseComicsRender"></section>
-                <section id="browseCharactersRender"></section>
-                <section id="browseCreatorsRender"></section>
+                <div id="browseRenderWrap">
+                    <section class="browseRender" id="browseComicsRender"></section>
+                    <section class="browseRender" id="browseCharactersRender"></section>
+                    <section class="browseRender" id="browseCreatorsRender"></section>
+                </div>
             </section> 
 
             <!-- Collections -->
             <section id="collectionsSection" class="toggleHide">
                 <ul id="userCollectionList"></ul>
             </section>
-        </div>
+            </div>
 		
 		<!-- RESULTS -->
-		<section id="uesrResultsSection">
-			Results
-			<div class="resultDiv"></div>
+		<section id="userResultsSection">
+            <div id="resultHeading"></div>
+			<div id="resultDiv"></div>
 		</section>
 		
- 		<footer>
-			<h1>Built by Nicole Cayouette for WDD</h1>
-			Data provided by <a href="https://marvel.com" target="_blank">Marvel</a>. &copy; 2014
-		</footer> 
-		
-
-		<script src="js/main.js"></script>
 		<script src="js/hashGeneration.js"></script>
+		<script src="js/main.js"></script>
         <script src="js/navigation.js"></script>
         <script src="js/search.js"></script>
         <script src="js/browse.js"></script>

@@ -1,0 +1,81 @@
+/*NAVIGATION*/
+nav {
+    display: flex;
+    justify-content: space-between;
+    
+    width: 100%;
+}
+
+nav span {
+    height: 77px;
+    
+    padding: 0;
+    margin: 0;
+    
+    border: 1.5px solid black;
+}
+
+.largeNav {
+    width: 30%;
+}
+
+.smallNav {
+    width: 5%;
+}
+
+nav span button {
+    width: 100%;
+    height: 100%;
+    
+    padding: 0 .25%;
+    margin: 0;
+    
+    font-size: 110%;
+}
+
+#homeImg, #infoImg {
+    height: 24px;
+    width: 24px;
+}
+
+.selected {
+    color: red;
+}
+
+/*NAV CONTENT*/
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    
+    width: 99.5%;
+    height: 100px;
+    
+    margin: 1% .5%;
+    
+    background-color: red;
+    border: solid 1.5px black;
+    border-style: outset;
+}
+
+.preResultContent {
+    display: flex;
+    justify-content: center;
+    
+    font-family: "Impact", monospace;
+    font-size: 500%;
+    color: white;
+    text-shadow: 1px 1px #f9f9f9;
+}
+
+.miniContent {
+    display: flex;
+    justify-content: flex-end;
+    
+    padding-right: 5px;
+    
+    font-family: "Impact", monospace;
+    font-size: 100%;
+    color: #f9f9f9;
+}

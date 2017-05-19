@@ -1,0 +1,104 @@
+/*RESULTS*/
+#userResultsSection {
+    width: 100%;
+    height: 68vh;
+    min-height: 68vh;
+}
+
+#resultHeading {
+    height: 50px;
+    
+    background-color: white;
+}
+
+#resultHeading img {
+    width: 15%;
+    
+    position: absolute;
+    top: 160px;
+    left: -5px;
+    z-index: 1;
+}
+
+#resultHeading h1 {
+    padding-left: 50px;
+    margin: 5px 0;
+    
+    position: absolute;
+    z-index: 2;
+}
+
+#resH1 {
+    margin-left: 5px;
+    color: red;
+}
+
+#resultDiv {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    
+    width: 100%;
+    height: 99%;
+    
+    overflow: auto;
+}
+
+.homeImgSearch {
+    width: 100%;
+    height: 99%;
+    min-height: 99%;
+    
+    border: 2px solid black;
+    
+    opacity: .65;
+}
+
+.resultSingleItem {
+    display: flex;
+    justify-content: flex-start;
+    
+    width: 100%;
+    height: 324px;
+    
+    padding: 0;
+    margin: 0 0 5% 0;
+    
+    border: 2px solid black;
+}
+
+.resultSingleItem:last-of-type {
+    margin: 0 0 1% 0;
+}
+
+.resultSingleItem img {
+    padding: 0;
+    margin: 0;
+}
+
+.searchDetails, .creatorsSearchDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    width: 100%;
+    
+    margin: 1% 3%;
+}
+
+.creatorsSearchDetails {
+    min-height: 300px;
+    
+    overflow: auto;
+}
+
+.searchName {
+    align-self: flex-end;
+    
+    font-family: "Impact", monospace;
+    font-size: 200%;
+}
+
+.searchTotal, .searchIssue, .searchPageCount {
+    font-style: italic;
+}

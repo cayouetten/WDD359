@@ -1,0 +1,69 @@
+/*SEARCH*/
+#searchSection {
+    width: 100%;
+    height: 90%;
+}
+
+#userSearchForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+}
+
+#userSearchForm select, #userSearchForm input, #userSearchForm button {
+    margin: 0 .5%;
+    
+    font-family: "Tahoma", sans-serif;
+    border-color: #efefef;
+}
+
+#userSearchForm select {
+    width: 25%;
+    min-width: 200px;
+    height: 40px;
+    
+    padding: .5%;
+    
+    font-size: 105%;
+    text-align: center;
+    
+    border-width: 1.5px;
+    border-style: outset;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+    
+    background: white url(../images/DoubleArrowUpDown.svg) no-repeat center right;
+    background-size: 20px;
+}
+
+#userSearchType {
+    width: 100%;
+}
+
+#userSearchType img {
+    width: 5px;
+}
+
+#userSearchForm input {
+    font-size: 105%;
+    
+    min-width: 35%;
+    height: 34px;
+    
+    padding: 1px .5%;
+}
+
+#userSearchForm button {
+    height: 40px;
+    
+    padding: 2px;
+    
+    border-width: 2px;
+    border-style: outset;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+    
+    background-color: white;
+}
