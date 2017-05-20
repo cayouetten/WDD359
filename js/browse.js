@@ -192,7 +192,7 @@ function createBrowseRequest(url, category, querySelect) {
 			var res = document.querySelector("#resultDiv");
 			if(res != null) {
                 resHead.className = "";
-				resHead.innerHTML = "<img src='images/explosion2.svg'><h1>" + category.toUpperCase() + " results beginning with <em>" + querySelect + "</em></h1>";
+				resHead.innerHTML = "<h1><img src='images/arrow-right.svg'><span class='resH1'>" + category.toUpperCase() + "</span> results beginning with <em class='resH1'>" + querySelect + "</em></h1>";
                 res.innerHTML = resultContent;
 			}
 		}

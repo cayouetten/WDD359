@@ -15,7 +15,7 @@
     background-repeat: no-repeat;
     background-position: top left;
     background-size: contain;
-}
+}c
 
 .browseNav:focus {
     outline: 0px;
@@ -100,7 +100,7 @@
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
     
-    background: white url(../images/DoubleArrowUpDown.svg) no-repeat center right;
+    background: white url(../images/arrow-right.svg) no-repeat center right;
     background-size: 10px;
 }
 

@@ -104,7 +104,7 @@ function createSearchRequest(url, option) {
             var res = document.querySelector("#resultDiv");
 			if(res != null) {
                 resHead.className = "";
-				resHead.innerHTML = "<img src='images/explosion2.svg'><h1>Results for <em  id='resH1'>" + searchField.value + "</em></h1>";
+				resHead.innerHTML = "<h1><img src='images/arrow-right.svg'>Results for <em  class='resH1'>" + searchField.value + "</em></h1>";
                 res.innerHTML = resultContent;
 			}
 		}

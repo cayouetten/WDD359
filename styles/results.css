@@ -6,29 +6,25 @@
 }
 
 #resultHeading {
-    height: 50px;
+    
+    padding: 0;
+    margin: .5% 0 1.5% 0;
     
     background-color: white;
 }
 
 #resultHeading img {
-    width: 15%;
-    
-    position: absolute;
-    top: 160px;
-    left: -5px;
-    z-index: 1;
+    width: 20px;
 }
 
 #resultHeading h1 {
-    padding-left: 50px;
-    margin: 5px 0;
+    align-self: center;
     
-    position: absolute;
-    z-index: 2;
+    padding: 0px 0;
+    margin: 0;
 }
 
-#resH1 {
+.resH1 {
     margin-left: 5px;
     color: red;
 }

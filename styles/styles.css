@@ -19,7 +19,7 @@ h1 {
 
 /*TOGGLE DISPLAY*/
 .toggleHide {
-    display: none;
+    display: none !important;
 }
 
 .toggleShow {
@@ -27,7 +27,7 @@ h1 {
 }
 
 /*NO RESULTS*/
-.noResults{
+.noResults {
     width: 100%;
     
     margin-top: 15%;
