@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" type="text/css" href="styles/styles.css">
 		<link rel="stylesheet" type="text/css" href="styles/browse.css">
-		<link rel="stylesheet" type="text/css" href="styles/collections.css">
+		<link rel="stylesheet" type="text/css" href="styles/featured.css">
 		<link rel="stylesheet" type="text/css" href="styles/navigation.css">
 		<link rel="stylesheet" type="text/css" href="styles/results.css">
 		<link rel="stylesheet" type="text/css" href="styles/search.css">
@@ -19,7 +19,7 @@
             
             <span class="largeNav"><button type="button" id="navSearch"><h1>SEARCH</h1></button></span>
             <span class="largeNav"><button type="button" id="navBrowse"><h1>BROWSE</h1></button></span>
-            <span class="largeNav"><button type="button" id="navCollections"><h1>COLLECTIONS</h1></button></span>
+            <span class="largeNav"><button type="button" id="navFeatured"><h1>FEATURED</h1></button></span>
             
             <span class="smallNav"><button type="button" id="navInfo"><img id="infoImg" src="images/info.svg"></button></span>
         </nav>
@@ -55,11 +55,16 @@
                 </div>
             </section> 
 
-            <!-- Collections -->
-            <section id="collectionsSection" class="toggleHide">
-                <ul id="userCollectionList"></ul>
+            <!-- Featured -->
+            <section id="featuredSection" class="toggleHide">
+                <ul id="featuredList"> 
+                    <li><button type="button" class="featuredButton" id="avengers">The AVENGERS</button></li>
+                    <li><button type="button" class="featuredButton" id="xmen">X-Men</button></li>
+                    <li><button type="button" class="featuredButton" id="guardians">Guardians of the Galaxy</button></li>
+                    <li><button type="button" class="featuredButton" id="fantastic">Fantastic Four</button></li>
+                </ul>
             </section>
-            </div>
+        </div>
 		
 		<!-- RESULTS -->
 		<section id="userResultsSection">
@@ -70,6 +75,7 @@
 		<script src="js/hashGeneration.js"></script>
 		<script src="js/main.js"></script>
         <script src="js/navigation.js"></script>
+        <script src="js/featured.js"></script>
         <script src="js/search.js"></script>
         <script src="js/browse.js"></script>
 	</body>

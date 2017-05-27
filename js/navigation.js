@@ -3,7 +3,7 @@ var homeButton = document.querySelector('#navHome');
 
 var navS = document.querySelector("#navSearch");
 var navB = document.querySelector("#navBrowse");
-var navC = document.querySelector("#navCollections");
+var navF = document.querySelector("#navFeatured");
 
 var infoButton = document.querySelector('#navInfo');
 
@@ -12,7 +12,7 @@ var miniContent = document.querySelector(".miniContent");
 
 var secS = document.querySelector("#searchSection");
 var secB = document.querySelector("#browseSection");
-var secC = document.querySelector("#collectionsSection");
+var secF = document.querySelector("#featuredSection");
 
 var bcoRender = document.querySelector("#browseComicsRender");
 var bchRender = document.querySelector("#browseCharactersRender");
@@ -21,13 +21,13 @@ var bcrRender = document.querySelector("#browseCreatorsRender");
 navS.addEventListener("click", function(e){
     secS.className = "toggleShow"; //show
     secB.className = "toggleHide";
-    secC.className = "toggleHide";
+    secF.className = "toggleHide";
     
     preResultContent.className = "miniContent";
     
     navS.className = "selected";
     navB.className = "";
-    navC.className = "";
+    navF.className = "";
     
     bcoRender.innerHTML = "";
     bchRender.innerHTML = "";
@@ -39,13 +39,13 @@ navS.addEventListener("click", function(e){
 navB.addEventListener("click", function(e){
     secS.className = "toggleHide";
     secB.className = "toggleShow"; //show
-    secC.className = "toggleHide";
+    secF.className = "toggleHide";
     
     preResultContent.className = "miniContent";
     
     navS.className = "";
     navB.className = "selected";
-    navC.className = "";
+    navF.className = "";
     
     bcoRender.innerHTML = "";
     bchRender.innerHTML = "";
@@ -54,16 +54,16 @@ navB.addEventListener("click", function(e){
     createAPIreq();
 });
 
-navC.addEventListener("click", function(e){
+navF.addEventListener("click", function(e){
     secS.className = "toggleHide";
     secB.className = "toggleHide";
-    secC.className = "toggleShow"; //show
+    secF.className = "toggleShow"; //show
     
     preResultContent.className = "miniContent";
     
     navS.className = "";
     navB.className = "";
-    navC.className = "selected";
+    navF.className = "selected";
     
     bcoRender.innerHTML = "";
     bchRender.innerHTML = "";
@@ -76,7 +76,7 @@ navC.addEventListener("click", function(e){
 homeButton.addEventListener("click", function(e) {
     secS.className = "toggleHide";
     secB.className = "toggleHide";
-    secC.className = "toggleHide";
+    secF.className = "toggleHide";
 
     if(preResultContent != null) {
         preResultContent.className = "preResultContent";
@@ -84,7 +84,7 @@ homeButton.addEventListener("click", function(e) {
     
     navS.className = "";
     navB.className = "";
-    navC.className = "";
+    navF.className = "";
     
     bcoRender.innerHTML = "";
     bchRender.innerHTML = "";
@@ -97,7 +97,7 @@ homeButton.addEventListener("click", function(e) {
 infoButton.addEventListener("click", function(e) {
     secS.className = "toggleHide";
     secB.className = "toggleHide";
-    secC.className = "toggleHide";
+    secF.className = "toggleHide";
 
     if(preResultContent != null) {
         preResultContent.className = "preResultContent";
@@ -105,7 +105,7 @@ infoButton.addEventListener("click", function(e) {
     
     navS.className = "";
     navB.className = "";
-    navC.className = "";
+    navF.className = "";
     
     bcoRender.innerHTML = "";
     bchRender.innerHTML = "";
@@ -114,7 +114,7 @@ infoButton.addEventListener("click", function(e) {
     
     //RENDER
     var resultContent = "<h1>About</h1>";
-    resultContent += "<span class='genAttribution'>Data provided by Marvel. © 2014 Marvel</span>";
+    resultContent += "<span class='genAttribution'>Data provided by <a href='http://marvel.com' target='_blank'>Marvel</a>. © 2014 Marvel</span>";
     
     var resHead = document.querySelector('#resultHeading');
     resHead.innerHTML = "";

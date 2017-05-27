@@ -121,6 +121,7 @@ function createBrowseRequest(url, category, querySelect) {
 		            var resPath = resultData.data.results[i];
 
                     if(resPath != null) {
+                        var comID = resPath.id;
                         var name = resPath.title;
                         var issue = resPath.issueNumber;
                         var description = resPath.description;
@@ -129,13 +130,18 @@ function createBrowseRequest(url, category, querySelect) {
                         }
                         var pages = resPath.pageCount;
                         var image = "<img src='" + resPath.thumbnail.path + "/portrait_incredible." + resPath.thumbnail.extension + "'/>";
+                        var links = resPath.urls;
 
                         resultContent += "<div class='resultSingleItem'><span class='searchImage'>" + image + "</span>";
                         
                         resultContent += "<div class='searchDetails'><span class='searchName'>" + name + "</span>";
                         resultContent += "<span class='searchIssue'>Issue #" + issue + "</span>";
                         resultContent += "<span class='searchDescription'>" + description + "</span>";
-                        resultContent += "<span class='searchPageCount'>" + pages + " pages</span></div></div>";
+                        resultContent += "<span class='searchPageCount'>" + pages + " pages</span><span class='linkBack'>";
+                        for(var j=0; j<links.length; j++) {
+                            resultContent += "<a href='" + links[j].url + "' target='_blank'>" + links[j].type.toUpperCase() + "</a>";
+                        }
+                        resultContent += "</span></span></div></div>";
                     }
 	            }
             } else if(category == "characters") {
@@ -143,20 +149,26 @@ function createBrowseRequest(url, category, querySelect) {
 		            var resPath = resultData.data.results[i];
 
                     if(resPath != null) {
+                        var charID = resPath.id;
                         var name = resPath.name;
                         var description = resPath.description;
                         if(description == "" || description == null) {
                             description = "No description available.";
                         }
                         var comicsTotal = resPath.comics.available;
-                        var comicsCollection = resPath.comics.comicsCollection;
+                        var comicsFeatured = resPath.comics.comicsFeatured;
                         var image = "<img src='" + resPath.thumbnail.path + "/portrait_incredible." + resPath.thumbnail.extension + "'/>";
+                        var links = resPath.urls;
 
                         resultContent += "<div class='resultSingleItem'><span class='searchImage'>" + image + "</span>";
                         
                         resultContent += "<div class='searchDetails'><span class='searchName'>" + name + "</span>";
                         resultContent += "<span class='searchDescription'>" + description + "</span>";
-                        resultContent += "<span class='searchTotal'>" + comicsTotal + " Comic Appearances</span></div></div>";
+                        resultContent += "<span class='searchTotal'>" + comicsTotal + " Comic Appearances</span><span class='linkBack'>";
+                        for(var j=0; j<links.length; j++) {
+                            resultContent += "<a href='" + links[j].url + "' target='_blank'>" + links[j].type.toUpperCase() + "</a>";
+                        }
+                        resultContent += "</span></span></div></div>";
                     }
 	            }
             } else {
@@ -164,6 +176,7 @@ function createBrowseRequest(url, category, querySelect) {
 		            var resPath = resultData.data.results[i];
 
                     if(resPath != null) {
+                        var creaID = resPath.id;
                         var name = resPath.fullName;
                         var attributedComics = "";
                         for(var j=0; j<resPath.comics.returned; j++) {
@@ -177,12 +190,17 @@ function createBrowseRequest(url, category, querySelect) {
                             attributedStories += "<br>" + resPath.stories.items[k].name + ": " + resPath.stories.items[k].type;
                         }
                         var image = "<img src='" + resPath.thumbnail.path + "/portrait_incredible." + resPath.thumbnail.extension + "'/>";
+                        var links = resPath.urls;
                         
                         resultContent += "<div class='resultSingleItem'><span class='searchImage'>" + image + "</span>";
                         
                         resultContent += "<div class='creatorsSearchDetails'><span class='searchName'>" + name + "</span>";
                         resultContent += "<span class='searchAttrComics'>Attributed Comics: " + attributedComics + "</span>";
-                        resultContent += "<span class='searchAttrtories'>Attributed Stories" + attributedStories + "</span></div></div>";
+                        resultContent += "<span class='searchAttrtories'>Attributed Stories" + attributedStories + "</span><span class='linkBack'>";
+                        for(var j=0; j<links.length; j++) {
+                            resultContent += "<a href='" + links[j].url + "' target='_blank'>" + links[j].type.toUpperCase() + "</a>";
+                        }
+                        resultContent += "</span></span></div></div>";
                     }
 	            }
             }
@@ -192,7 +210,7 @@ function createBrowseRequest(url, category, querySelect) {
 			var res = document.querySelector("#resultDiv");
 			if(res != null) {
                 resHead.className = "";
-				resHead.innerHTML = "<h1><img src='images/arrow-right.svg'><span class='resH1'>" + category.toUpperCase() + "</span> results beginning with <em class='resH1'>" + querySelect + "</em></h1>";
+				resHead.innerHTML = "<h1><img src='images/arrow-right.svg'><span class='resH1'>" + category.toUpperCase() + "</span> beginning with <em class='resH1'>" + querySelect + "</em></h1>";
                 res.innerHTML = resultContent;
 			}
 		}

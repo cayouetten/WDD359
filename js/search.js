@@ -63,12 +63,17 @@ function createSearchRequest(url, option) {
                         }
                         var comicsTotal = resPath.comics.available;
                         var image = "<img src='" + resPath.thumbnail.path + "/portrait_incredible." + resPath.thumbnail.extension + "'/>";
+                        var links = resPath.urls;
 
                         resultContent += "<div class='resultSingleItem'><span class='searchImage'>" + image + "</span>";
                         
                         resultContent += "<div class='searchDetails'><span class='searchName'>" + name + "</span>";
                         resultContent += "<span class='searchDescription'>" + description + "</span>";
-                        resultContent += "<span class='searchTotal'>" + comicsTotal + " Comic Appearances</span></div></div>";
+                        resultContent += "<span class='searchTotal'>" + comicsTotal + " Comic Appearances</span><span class='linkBack'>";
+                        for(var j=0; j<links.length; j++) {
+                            resultContent += "<a href='" + links[j].url + "' target='_blank'>" + links[j].type.toUpperCase() + "</a>";
+                        }
+                        resultContent += "</span></span></div></div>";
                     }
 	            }
             } else {
@@ -88,13 +93,18 @@ function createSearchRequest(url, option) {
                         }
                         var pages = resPath.pageCount;
                         var image = "<img src='" + resPath.thumbnail.path + "/portrait_incredible." + resPath.thumbnail.extension + "'/>";
+                        var links = resPath.urls;
 
                         resultContent += "<div class='resultSingleItem'><span class='searchImage'>" + image + "</span>";
                         
                         resultContent += "<div class='searchDetails'><span class='searchName'>" + name + "</span>";
                         resultContent += "<span class='searchIssue'>Issue #" + issue + "</span>";
                         resultContent += "<span class='searchDescription'>" + description + "</span>";
-                        resultContent += "<span class='searchPageCount'>" + pages + " pages</span></div></div>";
+                        resultContent += "<span class='searchPageCount'>" + pages + " pages</span><span class='linkBack'>";
+                        for(var j=0; j<links.length; j++) {
+                            resultContent += "<a href='" + links[j].url + "' target='_blank'>" + links[j].type.toUpperCase() + "</a>";
+                        }
+                        resultContent += "</span></span></div></div>";
                     }
 	            }
             }
